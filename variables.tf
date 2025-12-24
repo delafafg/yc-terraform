@@ -18,3 +18,16 @@ variable "zone_list" {
   type = list(string)
   description = "Availability zones from YC"
 }
+
+variable "labels" {
+  type = map(string)
+}
+
+variable "resources" {
+  type = object({
+    cpu = number
+    memory = number
+    disk = number
+  })
+  description = "Compute Instance resources"
+}

@@ -11,3 +11,14 @@ zone_list = [
   "ru-central1-b",
   "ru-central1-d"
 ]
+
+labels = {
+  "project" = "slurm"
+  "env" = "lab"
+}
+
+resources = {
+  cpu = 2
+  memory = 2
+  disk = 10
+}

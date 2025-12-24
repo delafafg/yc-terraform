@@ -4,9 +4,11 @@ resource "yandex_compute_instance" "vm" {
   platform_id = "standard-v${count.index + 1}"
   zone        = var.zone_list[count.index]
 
+  labels = var.labels
+
   resources {
-    cores  = 2
-    memory = 2
+    cores  = var.resources.cpu
+    memory = var.resources.memory
   }
 
   allow_stopping_for_update = true
@@ -14,7 +16,7 @@ resource "yandex_compute_instance" "vm" {
   boot_disk {
     initialize_params {
       image_id = var.image_id
-      size = 10
+      size = var.resources.disk
     }
   }
 
