@@ -31,3 +31,22 @@ variable "resources" {
   })
   description = "Compute Instance resources"
 }
+
+variable "nlb_port" {
+  type = number
+  description = "Port for Network LB"
+}
+
+variable "healthcheck" {
+  type = object({
+    name = string
+    port = number
+    path = string
+  })
+  description = "Healthcheck configuration for Network LB"
+}
+
+variable "count_var" {
+  type = number
+  description = "Variable for count"
+}

@@ -4,7 +4,7 @@ resource "yandex_vpc_network" "net-1" {
 }
 
 resource "yandex_vpc_subnet" "subnet" {
-  count = 3
+  count = var.count_var
   v4_cidr_blocks = [var.subnets_addr[count.index]]
   zone           = var.zone_list[count.index]
   network_id     = yandex_vpc_network.net-1.id
@@ -13,4 +13,3 @@ resource "yandex_vpc_subnet" "subnet" {
 
   name = "${local.preffix}subnet-${count.index + 1}"
 }
-

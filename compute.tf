@@ -1,5 +1,5 @@
 resource "yandex_compute_instance" "vm" {
-  count = 3
+  count = var.count_var
   name        = "${local.preffix}${var.vm_name}-${count.index + 1}"
   platform_id = "standard-v${count.index + 1}"
   zone        = var.zone_list[count.index]
@@ -23,7 +23,6 @@ resource "yandex_compute_instance" "vm" {
   network_interface {
     index     = 1
     subnet_id = yandex_vpc_subnet.subnet[count.index].id
-    nat = true
   }
 
   metadata = {
@@ -32,17 +31,17 @@ resource "yandex_compute_instance" "vm" {
   }
 }
 
-output "public_ip_0" {
-  value = yandex_compute_instance.vm[0].network_interface[0].nat_ip_address
-  description = "Public IP for YC compute instance"
+output "internal_vm_ip_0" {
+  value = yandex_compute_instance.vm[0].network_interface[0].ip_address
+  description = "IP for YC compute instance"
 }
 
-output "public_ip_1" {
-  value = yandex_compute_instance.vm[1].network_interface[0].nat_ip_address
-  description = "Public IP for YC compute instance"
+output "internal_vm_ip_1" {
+  value = yandex_compute_instance.vm[1].network_interface[0].ip_address
+  description = "IP for YC compute instance"
 }
 
-output "public_ip_2" {
-  value = yandex_compute_instance.vm[2].network_interface[0].nat_ip_address
-  description = "Public IP for YC compute instance"
+output "internal_vm_ip_2" {
+  value = yandex_compute_instance.vm[2].network_interface[0].ip_address
+  description = "IP for YC compute instance"
 }

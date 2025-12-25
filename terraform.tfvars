@@ -22,3 +22,13 @@ resources = {
   memory = 2
   disk = 10
 }
+
+nlb_port = 8080
+
+healthcheck = {
+  name = "http"
+  port = 80
+  path = "/"
+}
+
+count_var = 3
